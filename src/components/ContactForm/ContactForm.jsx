@@ -40,7 +40,6 @@ const initialValues = {
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getContacts);
-  console.log(items);
 
   const handleSubmit = (values, { resetForm }) => {
     const dublicateContact = findDublicateContact(values, items);
@@ -49,7 +48,7 @@ export const ContactForm = () => {
       alert(`${values.name} is already in contacts`);
     } else {
       dispatch(addContact(values));
-      console.log(values);
+
       resetForm();
     }
   };
