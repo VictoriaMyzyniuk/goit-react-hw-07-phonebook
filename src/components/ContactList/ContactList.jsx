@@ -6,16 +6,20 @@ import {
   ContactItemButton,
 } from 'components/ContactList/ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContactsData, deleteContact } from 'redux/contactsSlice';
+// import { getContactsData, deleteContact } from 'redux/contactsSlice';
+
+import { deleteContact } from 'redux/operations';
+import { getContacts, getStatusFilter } from 'redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const { contactsList, filter } = useSelector(getContactsData);
+  const items = useSelector(getContacts);
+  const filter = useSelector(getStatusFilter);
 
   const getNeeddedCard = () => {
     const normalizedFilter = filter.toLowerCase();
 
-    return contactsList.filter(contact =>
+    return items.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
